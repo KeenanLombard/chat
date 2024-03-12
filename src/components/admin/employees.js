@@ -1,42 +1,36 @@
 import React from "react";
+import { useState } from "react";
 
-const data = [
-  {
-    id: "123",
-    name: "Keenan",
-    email: "keenanlombardd2@gmail.com",
-    status: "Busy",
-  },
-  {
-    id: "123",
-    name: "Keenan",
-    email: "keenanlombardd2@gmail.com",
-    status: "Busy",
-  },
-  {
-    id: "123",
-    name: "Keenan",
-    email: "keenanlombardd2@gmail.com",
-    status: "Busy",
-  },
-  {
-    id: "123",
-    name: "Keenan",
-    email: "keenanlombardd2@gmail.com",
-    status: "Busy",
-  },
-];
+function Employees() {
+  //load
+  //fetch all employee data
+  //save employee data locally
+  //finish load
+  //render component
 
-function employees() {
-  const handleOnboarding = () => {};
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    closeModal();
+  };
+
   const handleViewToggle = () => {};
   const handleSortToggle = (data) => {};
+
   return (
     <div>
       {/* toolbar */}
       <header className='flex justify-end'>
         <div>
-          <button className='mx-2 font-bold bg-green-100 text-green-900 rounded px-5 py-2'>
+          <button
+            onClick={openModal}
+            className='mx-2 font-bold bg-green-100 text-green-900 rounded px-5 py-2'>
             Onboarding
           </button>
         </div>
@@ -49,6 +43,56 @@ function employees() {
           </button>
         </div>
       </header>
+      {/* Model */}
+      {isModalOpen && (
+        <div className='fixed inset-0 flex items-center justify-center z-50'>
+          <div className='absolute inset-0 bg-black opacity-50'></div>
+
+          <div className='bg-white p-8 rounded shadow-lg z-10'>
+            <div className='flex justify-end'>
+              <button
+                className='text-gray-700 hover:text-red-500'
+                onClick={closeModal}>
+                Close
+              </button>
+            </div>
+
+            <form onSubmit={() => handleSubmit}>
+              {/* Your form fields go here */}
+              <label className='block mb-4'>
+                ID:
+                <input
+                  type='text'
+                  className='border rounded w-full p-2'
+                  // Add your form input state and logic here
+                />
+              </label>
+              <label className='block mb-4'>
+                Name:
+                <input
+                  type='text'
+                  className='border rounded w-full p-2'
+                  // Add your form input state and logic here
+                />
+              </label>
+              <label className='block mb-4'>
+                Email:
+                <input
+                  type='text'
+                  className='border rounded w-full p-2'
+                  // Add your form input state and logic here
+                />
+              </label>
+              <button
+                type='submit'
+                className='w-full bg-blue-500 text-white py-2 px-4 rounded'>
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* list view */}
       <section className='shadow-xl p-2 m-2'>
         <ul className='space-y-2'>
@@ -84,4 +128,4 @@ function employees() {
   );
 }
 
-export default employees;
+export default Employees;
