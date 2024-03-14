@@ -1,14 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import EmployeeList from "./employeeList";
 
 function Employees() {
-  //load
-  //fetch all employee data
-  //save employee data locally
-  //finish load
-  //render component
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isToggleView, setToggleView] = useState(false);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -23,24 +20,61 @@ function Employees() {
   const handleViewToggle = () => {};
   const handleSortToggle = (data) => {};
 
+  const button = () => {
+    if (isToggleView) {
+      return (
+        <button
+          onClick={() => setToggleView(!isToggleView)}
+          className='mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
+          Card View
+        </button>
+      );
+    } else {
+      return (
+        <button
+          onClick={() => setToggleView(!isToggleView)}
+          className='mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
+          List View
+        </button>
+      );
+    }
+  };
+
   return (
     <div>
       {/* toolbar */}
-      <header className='flex justify-end'>
+      <header className='flex justify-between text-sm'>
         <div>
-          <button
-            onClick={openModal}
-            className='mx-2 font-bold bg-green-100 text-green-900 rounded px-5 py-2'>
-            Onboarding
-          </button>
+          <div>
+            {button()}
+            <button className='mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
+              Sort ASC
+            </button>
+            <button
+              onClick={openModal}
+              className='mx-2 font-bold bg-green-100 text-green-900 rounded px-5 py-2'>
+              Onboarding
+            </button>
+          </div>
         </div>
-        <div>
-          <button className='mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
-            Card View
-          </button>
-          <button className='mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
-            Sort ASC
-          </button>
+        <div className='my-auto flex'>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke-width='1.5'
+            stroke='currentColor'
+            class='w-6 h-6 my-auto'>
+            <path
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              d='m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z'
+            />
+          </svg>
+
+          <input
+            className='border rounded py-1 px-2 mx-2'
+            placeholder='search...'></input>
         </div>
       </header>
       {/* Model */}
@@ -92,38 +126,7 @@ function Employees() {
           </div>
         </div>
       )}
-
-      {/* list view */}
-      <section className='shadow-xl p-2 m-2'>
-        <ul className='space-y-2'>
-          {data.map((x) => (
-            <li
-              key={x.id}
-              className='hover:bg-gray-100 dark:hover:bg-gray-700 flex cursor-pointer justify-around items-center space-x-2'>
-              {/* col 1 */}
-              <div className='my-auto'>
-                <input type='checkbox' />
-              </div>
-              {/* col 2 */}
-              <div className='flex my-auto'>
-                <img
-                  src='https://placekitten.com/40/40'
-                  alt={`Peer ${x.id} Avatar`}
-                  className='w-9 h-9 rounded-full mx-2'
-                />
-                <p className='font-bold my-auto mx-2'>{x.name}</p>
-                <p className=' my-auto mx-2'>{x.id}</p>
-              </div>
-              {/* col 3 */}
-              <div className=''>{x.email}</div>
-              {/* col 4 */}
-              <div className='text-red-500'>{x.status}</div>
-            </li>
-          ))}
-        </ul>
-      </section>
-      {/* card view */}
-      <section></section>
+      <EmployeeList isToggleView={isToggleView} />
     </div>
   );
 }

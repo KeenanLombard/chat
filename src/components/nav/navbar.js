@@ -3,11 +3,25 @@ import React from "react";
 function navbar() {
   return (
     // top down employee management
-    <div className='flex justify-between py-2'>
-      <div className='w-full my-auto text-center font-bold text-xl text-blue-900'>
+    <div className='flex justify-end py-2'>
+      {/* <div className='w-full my-auto font-bold text-xl text-blue-900'>
         AgencyCore
-      </div>
-      <ul className='flex justify-around w-full'>
+      </div> */}
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        fill='none'
+        viewBox='0 0 24 24'
+        stroke-width='1.5'
+        stroke='currentColor'
+        className='w-10 h-10 mx-2 cursor-pointer'>
+        <path
+          stroke-linecap='round'
+          stroke-linejoin='round'
+          d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+        />
+      </svg>
+
+      {/* <ul className='flex justify-around w-full'>
         <li className='text-blue-900 font-bold rounded px-5 my-2 cursor-pointer'>
           Dashboard
         </li>
@@ -20,7 +34,7 @@ function navbar() {
         <li className='text-blue-900 font-bold rounded px-5 my-2 cursor-pointer'>
           Profile
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 }
