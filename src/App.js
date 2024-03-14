@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import Chat from "./components/chat/main";
@@ -6,14 +7,19 @@ import Dashboard from "./components/dashboard/dashboard";
 import Navbar from "./components/nav/navbar";
 import Footer from "./components/footers/footer";
 import Employees from "./components/admin/employees";
+import EmployeeProfile from "./components/admin/employeeProfile";
 
 function App() {
   return (
     <div className='App container mx-auto'>
       <Navbar />
       <hr className='my-2' />
-
-      <Employees />
+      <Routes>
+        <Route path='/' element={<Dashboard />} />
+        <Route path='/employees' element={<Employees />} />
+        <Route path='/employees/profile' element={<EmployeeProfile />} />
+        <Route path='/chat' element={<Chat />} />
+      </Routes>
       <hr className='my-2' />
     </div>
   );

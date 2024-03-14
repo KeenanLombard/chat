@@ -1,6 +1,6 @@
 import React from "react";
 
-function employeeProfile() {
+function employeeProfile({ employee }) {
   return <div>employeeProfile</div>;
 }
 
