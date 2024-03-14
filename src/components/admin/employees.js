@@ -25,7 +25,7 @@ function Employees() {
       return (
         <button
           onClick={() => setToggleView(!isToggleView)}
-          className='mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
+          className='w-60 mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
           Card View
         </button>
       );
@@ -33,7 +33,7 @@ function Employees() {
       return (
         <button
           onClick={() => setToggleView(!isToggleView)}
-          className='mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
+          className='w-60 mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
           List View
         </button>
       );
@@ -47,12 +47,12 @@ function Employees() {
         <div>
           <div>
             {button()}
-            <button className='mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
+            <button className='w-60 mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
               Sort ASC
             </button>
             <button
               onClick={openModal}
-              className='mx-2 font-bold bg-green-100 text-green-900 rounded px-5 py-2'>
+              className='w-60 mx-2 font-bold bg-green-100 text-green-900 rounded px-5 py-2'>
               Onboarding
             </button>
           </div>
@@ -111,6 +111,14 @@ function Employees() {
               </label>
               <label className='block mb-4'>
                 Email:
+                <input
+                  type='text'
+                  className='border rounded w-full p-2'
+                  // Add your form input state and logic here
+                />
+              </label>
+              <label className='block mb-4'>
+                Group:
                 <input
                   type='text'
                   className='border rounded w-full p-2'

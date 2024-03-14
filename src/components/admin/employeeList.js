@@ -7,37 +7,135 @@ function EmployeeList({ isToggleView }) {
     {
       id: "1",
       group: "Development",
-      name: "Keenan",
-      email: "keenanlom@gmail.com",
-      status: "Busy",
+      name: "Alice",
+      email: "alice@gmail.com",
+      status: "Available",
     },
     {
       id: "2",
       group: "Sales",
-      name: "Keenan",
-      email: "keenanlom@gmail.com",
+      name: "Bob",
+      email: "bob@gmail.com",
       status: "Busy",
     },
     {
       id: "3",
       group: "UI/UX",
-      name: "Keenan",
-      email: "keenanlom@gmail.com",
+      name: "John",
+      email: "john@gmail.com",
       status: "Busy",
     },
     {
       id: "4",
       group: "Sales",
-      name: "Keenan",
-      email: "keenanlom@gmail.com",
-      status: "Busy",
+      name: "Emily",
+      email: "emily@gmail.com",
+      status: "Available",
     },
     {
       id: "5",
       group: "Development",
-      name: "Keenan",
-      email: "keenanlom@gmail.com",
+      name: "Alice",
+      email: "alice@gmail.com",
+      status: "Busy",
+    },
+    {
+      id: "6",
+      group: "UI/UX",
+      name: "Bob",
+      email: "bob@gmail.com",
       status: "Available",
+    },
+    {
+      id: "7",
+      group: "Sales",
+      name: "John",
+      email: "john@gmail.com",
+      status: "Busy",
+    },
+    {
+      id: "8",
+      group: "Development",
+      name: "Emily",
+      email: "emily@gmail.com",
+      status: "Busy",
+    },
+    {
+      id: "9",
+      group: "UI/UX",
+      name: "Alice",
+      email: "alice@gmail.com",
+      status: "Available",
+    },
+    {
+      id: "10",
+      group: "Development",
+      name: "Bob",
+      email: "bob@gmail.com",
+      status: "Available",
+    },
+    {
+      id: "11",
+      group: "Sales",
+      name: "John",
+      email: "john@gmail.com",
+      status: "Busy",
+    },
+    {
+      id: "12",
+      group: "UI/UX",
+      name: "Emily",
+      email: "emily@gmail.com",
+      status: "Available",
+    },
+    {
+      id: "13",
+      group: "Sales",
+      name: "Alice",
+      email: "alice@gmail.com",
+      status: "Busy",
+    },
+    {
+      id: "14",
+      group: "Development",
+      name: "Bob",
+      email: "bob@gmail.com",
+      status: "Available",
+    },
+    {
+      id: "15",
+      group: "UI/UX",
+      name: "John",
+      email: "john@gmail.com",
+      status: "Busy",
+    },
+    {
+      id: "16",
+      group: "Sales",
+      name: "Emily",
+      email: "emily@gmail.com",
+      status: "Available",
+    },
+    {
+      id: "17",
+      group: "Development",
+      name: "Alice",
+      email: "alice@gmail.com",
+      status: "Busy",
+    },
+    {
+      id: "18",
+      group: "UI/UX",
+      name: "Bob",
+      email: "bob@gmail.com",
+      status: "Available",
+    },
+    {
+      id: "19",
+      group: "Sales",
+      name: "John",
+      email: "john@gmail.com",
+      status: "Busy",
     },
   ];
   let employees;
@@ -68,10 +166,10 @@ function EmployeeList({ isToggleView }) {
                 <p className='font-bold my-auto mx-2'>{x.name}</p>
               </div>
               <div>
-                <p className=' my-auto mx-2'>{x.group}</p>
+                <p className=' my-auto mx-2text-center'>{x.group}</p>
               </div>
               {/* col 3 */}
-              <div className=''>{x.email}</div>
+              <div className='text-center'>{x.email}</div>
               {/* col 4 */}
               <div className='text-red-500 pr-5'>{x.status}</div>
             </li>
@@ -81,7 +179,7 @@ function EmployeeList({ isToggleView }) {
     );
   } else {
     employees = (
-      <section className='my-2'>
+      <section className=''>
         <ul className='m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2'>
           {data.map((x) => (
             <li

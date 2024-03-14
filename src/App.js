@@ -12,7 +12,9 @@ function App() {
     <div className='App container mx-auto'>
       <Navbar />
       <hr className='my-2' />
+
       <Employees />
+      <hr className='my-2' />
     </div>
   );
 }
