@@ -8,6 +8,7 @@ import Navbar from "./components/nav/navbar";
 import Footer from "./components/footers/footer";
 import Employees from "./components/admin/employees";
 import EmployeeProfile from "./components/admin/employeeProfile";
+import Documents from "./components/documents";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/employees' element={<Employees />} />
         <Route path='/employees/profile' element={<EmployeeProfile />} />
         <Route path='/chat' element={<Chat />} />
+        <Route path='/archive' element={<Documents />} />
       </Routes>
       <hr className='my-2' />
     </div>
