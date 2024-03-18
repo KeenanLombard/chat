@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import avatar from "../../assets/avatar.jpg";
 
 function EmployeeList({ isToggleView }) {
   const [employees, setEmployees] = useState(null);
@@ -32,46 +33,68 @@ function EmployeeList({ isToggleView }) {
   }, []);
 
   let employeesView;
-
   if (!isLoading) {
-    if (isToggleView) {
+    if (employees) {
       employeesView = (
-        <section className='shadow p-2 m-2'>
-          <ul className='space-y-2'>
+        <section className=''>
+          <ul className='m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
             {employees.map((x) => (
-              <Link to='profile'>
+              <Link to={"profile/" + x.id}>
                 <li
                   key={x.id}
-                  className='hover:bg-gray-100 dark:hover:bg-gray-700 flex cursor-pointer justify-between items-center space-x-2'>
+                  className='mx-2 my-2 p-2 shadow hover:bg-gray-100 dark:hover:bg-gray-700 flex-col cursor-pointer justify-between items-center space-x-2'>
                   {/* col 2 */}
-                  <div className='flex my-auto'>
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke-width='1.5'
-                      stroke='currentColor'
-                      className='w-6 h-6 m-2'>
-                      <path
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
-                        d='M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5'
-                      />
-                    </svg>
-
-                    <p className='font-bold my-auto mx-2'>{x.lname}</p>
-                  </div>
-                  <div>
-                    <p className=' my-auto mx-2text-center text-neutral-500'>
-                      {x.lname}
+                  <div className='flex justify-between my-auto'>
+                    <div className='flex'>
+                      <div>
+                        <img className='w-20 rounded-full' src={avatar}></img>
+                      </div>
+                      <div className='mx-2 my-auto'>
+                        <p className='font-bold'>
+                          {x.fname} {x.lname}
+                        </p>
+                        <p className='text-neutral-500 text-sm'>
+                          {x.department}
+                        </p>
+                      </div>
+                    </div>
+                    <p
+                      className={`${
+                        x.status != "Active"
+                          ? "bg-red-100 border-red-500"
+                          : "bg-green-100 border-green-500"
+                      } ' border-2 rounded-full my-auto px-5 text-center`}>
+                      {x.status}
                     </p>
                   </div>
-                  {/* col 3 */}
-                  <div className='text-center text-neutral-500'>
-                    {x.position}
+                  <div className='flex justify between w-full my-4'>
+                    <div className='border-r-2 w-full text-center'>
+                      <span className='font-semibold'>Total Hours</span>
+                      <br></br>
+                      {x.hours_worked}
+                    </div>
+                    <div className='border-r-2 w-full text-center'>
+                      <span className='font-semibold'>Performance</span>
+                      <br></br>
+                      {x.performance_rating}
+                    </div>
+                    <div className='w-full text-center'>
+                      <span className='font-semibold'>Total Tasks</span>
+                      <br></br>
+                      {x.tasks_completed}
+                    </div>
                   </div>
-                  {/* col 4 */}
-                  <div className='text-red-500 pr-5'>{x.status}</div>
+                  {/* <div>
+                    <p className='text-neutral-500 my-auto'>{x.position}</p>
+                  </div>
+                  <div>
+                    <p className='text-blue-500 my-auto'>{x.email}</p>
+                  </div>
+                  <div>
+                    <p className='text-neutral-500 my-auto'>
+                      Performance: {x.performance_rating}
+                    </p>
+                  </div> */}
                 </li>
               </Link>
             ))}
@@ -80,52 +103,25 @@ function EmployeeList({ isToggleView }) {
       );
     } else {
       employeesView = (
-        <section className=''>
-          <ul className='m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2'>
-            {employees.map((x) => (
-              <Link to='profile'>
-                <li
-                  key={x.id}
-                  className='mx-2 my-2 p-2 shadow hover:bg-gray-100 dark:hover:bg-gray-700 flex-col cursor-pointer justify-between items-center space-x-2'>
-                  {/* col 2 */}
-                  <div className='flex justify-between my-auto'>
-                    <div className='flex'>
-                      <svg
-                        xmlns='http://www.w3.org/2000/svg'
-                        fill='none'
-                        viewBox='0 0 24 24'
-                        stroke-width='1.5'
-                        stroke='currentColor'
-                        className='w-6 h-6 m-2'>
-                        <path
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                          d='M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5'
-                        />
-                      </svg>
-
-                      <p className='font-bold my-auto mx-2'>{x.lname}</p>
-                    </div>
-                    <div className='text-red-500 p-2 my-auto'>{x.status}</div>
-                  </div>
-                  <div>
-                    <p className='text-neutral-500 my-auto'>{x.position}</p>
-                  </div>
-                  {/* col 3 */}
-                  <div className='text-blue-500'>{x.email}</div>
-                  {/* col 4 */}
-                </li>
-              </Link>
-            ))}
-          </ul>
-        </section>
+        <div className='text-center text-neutral-500 m-10'>
+          <span className='text-2xl font-bold text-blue-500'>OOPS</span>
+          <br></br> We ran into a problem <br></br> No employees found
+        </div>
       );
     }
   }
+
   if (!isLoading) {
     return <div>{employeesView}</div>;
   } else {
-    return <div>loading...</div>;
+    return (
+      <div>
+        {" "}
+        <div className='flex justify-center items-center m-10'>
+          <div className='animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500'></div>
+        </div>
+      </div>
+    );
   }
 }
 

@@ -20,25 +20,25 @@ function Employees() {
   const handleViewToggle = () => {};
   const handleSortToggle = (data) => {};
 
-  const button = () => {
-    if (isToggleView) {
-      return (
-        <button
-          onClick={() => setToggleView(!isToggleView)}
-          className='w-60 mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
-          Card View
-        </button>
-      );
-    } else {
-      return (
-        <button
-          onClick={() => setToggleView(!isToggleView)}
-          className='w-60 mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
-          List View
-        </button>
-      );
-    }
-  };
+  // const button = () => {
+  //   if (isToggleView) {
+  //     return (
+  //       <button
+  //         onClick={() => setToggleView(!isToggleView)}
+  //         className='w-60 mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
+  //         Card View
+  //       </button>
+  //     );
+  //   } else {
+  //     return (
+  //       <button
+  //         onClick={() => setToggleView(!isToggleView)}
+  //         className='w-60 mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
+  //         List View
+  //       </button>
+  //     );
+  //   }
+  // };
 
   return (
     <div>
@@ -46,13 +46,13 @@ function Employees() {
       <header className='flex justify-between text-sm'>
         <div>
           <div>
-            {button()}
-            <button className='w-60 mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
+            {/* {button()} */}
+            {/* <button className='w-60 mx-2 font-bold bg-blue-100 text-blue-900 rounded px-5 py-2'>
               Sort ASC
-            </button>
+            </button> */}
             <button
               onClick={openModal}
-              className='w-60 mx-2 font-bold bg-green-100 text-green-900 rounded px-5 py-2'>
+              className='w-60 mx-2 font-semibold bg-blue-500 text-white rounded px-5 py-2'>
               Onboarding
             </button>
           </div>

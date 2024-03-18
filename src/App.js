@@ -18,11 +18,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Dashboard />} />
         <Route path='/employees' element={<Employees />} />
-        <Route path='/employees/profile' element={<EmployeeProfile />} />
+        <Route path='/employees/profile/:id' element={<EmployeeProfile />} />
         <Route path='/chat' element={<Chat />} />
         <Route path='/archive' element={<Documents />} />
       </Routes>
-      <hr className='my-2' />
     </div>
   );
 }
