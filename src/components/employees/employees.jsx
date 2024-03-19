@@ -52,7 +52,7 @@ function Employees() {
             </button> */}
             <button
               onClick={openModal}
-              className='w-60 mx-2 font-semibold bg-blue-500 text-white rounded px-5 py-2'>
+              className='w-60 mx-2 font-semibold shadow text-blue-500 rounded px-5 py-2 hover:bg-blue-500 hover:text-white'>
               Onboarding
             </button>
           </div>
