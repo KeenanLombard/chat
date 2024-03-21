@@ -1,11 +1,11 @@
-import { render } from "@testing-library/react";
 import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import avatar from "../../assets/avatar.jpg";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebase.js";
 
-function EmployeeList({ isToggleView }) {
+function EmployeeList() {
   const [employees, setEmployees] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,15 +14,7 @@ function EmployeeList({ isToggleView }) {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          "http://127.0.0.1:8000/api/employees",
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-            },
-          }
-        );
-        setEmployees(response.data);
+
         setIsLoading(false);
       } catch (error) {
         setError(error);
