@@ -11,7 +11,7 @@ import EmployeeProfile from "./components/employees/employeeProfile";
 import Documents from "./components/documents";
 import Settings from "./components/settings";
 
-async function App() {
+function App() {
   return (
     <div className='App dark:bg-gray-800 h-screen dark:text-white'>
       <div className='container mx-auto'>

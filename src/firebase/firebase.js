@@ -21,10 +21,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export const getEmployeeById = async () => {
-  const docRef = doc(db, "employees", "KL001");
+export const getEmployeeById = async (id) => {
+  const docRef = doc(db, "employees", id);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
+    console.log(docSnap.data());
     return docSnap.data();
   } else {
     console.log("No such document!");
@@ -32,6 +33,10 @@ export const getEmployeeById = async () => {
 };
 
 export const getAllEmployees = async () => {
+  let array = [];
   const querySnapshot = await getDocs(collection(db, "employees"));
-  return querySnapshot;
+  querySnapshot.forEach((doc) => {
+    array.push(doc.data());
+  });
+  return array;
 };

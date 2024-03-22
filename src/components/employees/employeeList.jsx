@@ -2,26 +2,18 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import avatar from "../../assets/avatar.jpg";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase/firebase.js";
+import { getAllEmployees } from "../../firebase/firebase.js";
 
 function EmployeeList() {
   const [employees, setEmployees] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-
-        setIsLoading(false);
-      } catch (error) {
-        setError(error);
-        setIsLoading(false);
-      }
-    };
-    fetchData();
+  useEffect(async () => {
+    setIsLoading(true);
+    const emp = await getAllEmployees();
+    setEmployees(emp);
+    setIsLoading(false);
   }, []);
 
   let employeesView;
