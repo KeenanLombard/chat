@@ -5,16 +5,22 @@ import avatar from "../../assets/avatar.jpg";
 import { getAllEmployees } from "../../firebase/firebase.js";
 
 function EmployeeList() {
-  const [employees, setEmployees] = useState(null);
+  const [employees, setEmployees] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(async () => {
-    setIsLoading(true);
-    const emp = await getAllEmployees();
-    setEmployees(emp);
-    setIsLoading(false);
-  }, []);
+  useEffect(() => {
+    // Fetch all employees
+    const fetchAllEmployees = async () => {
+      const employeesData = await getAllEmployees();
+      setEmployees(employeesData);
+      setIsLoading(false);
+    };
+
+    fetchAllEmployees(); // Fetch all employees
+  }, []); // Empty dependency array means this effect runs only once, equivalent to componentDidMount
+
+  console.log(employees);
 
   let employeesView;
   if (!isLoading) {
@@ -35,37 +41,37 @@ function EmployeeList() {
                       </div>
                       <div className='mx-2 my-auto'>
                         <p className='font-bold'>
-                          {x.fname} {x.lname}
+                          {x.data.fname} {x.data.lname}
                         </p>
                         <p className='text-neutral-500 text-sm'>
-                          {x.department}
+                          {x.data.department}
                         </p>
                       </div>
                     </div>
                     <p
                       className={`${
-                        x.status != "Active"
+                        x.data.status != "Active"
                           ? "bg-red-100 border-red-500"
                           : "bg-green-100 border-green-500"
                       } ' border-2 rounded-full my-auto px-5 text-center`}>
-                      {x.status}
+                      {x.data.status}
                     </p>
                   </div>
                   <div className='flex justify between w-full my-4'>
                     <div className='border-r-2 w-full text-center'>
                       <span className='font-semibold'>Total Hours</span>
                       <br></br>
-                      {x.hours_worked}
+                      {x.data.hours_worked}
                     </div>
                     <div className='border-r-2 w-full text-center'>
                       <span className='font-semibold'>Performance</span>
                       <br></br>
-                      {x.performance_rating}
+                      {x.data.performance_rating}
                     </div>
                     <div className='w-full text-center'>
                       <span className='font-semibold'>Total Tasks</span>
                       <br></br>
-                      {x.tasks_completed}
+                      {x.data.tasks_completed}
                     </div>
                   </div>
                   {/* <div>

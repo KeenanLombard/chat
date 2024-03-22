@@ -36,7 +36,7 @@ export const getAllEmployees = async () => {
   let array = [];
   const querySnapshot = await getDocs(collection(db, "employees"));
   querySnapshot.forEach((doc) => {
-    array.push(doc.data());
+    array.push({ id: doc.id, data: doc.data() });
   });
   return array;
 };

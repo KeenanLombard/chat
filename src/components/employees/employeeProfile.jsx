@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import avatar from "../../assets/avatar.jpg";
 import { BrowserRouter as Router, Route, useParams } from "react-router-dom";
+import { getEmployeeById } from "../../firebase/firebase";
 
 function EmployeeProfile() {
   const [employee, setEmployee] = useState(null);
@@ -9,28 +10,21 @@ function EmployeeProfile() {
   const [error, setError] = useState(null);
 
   let { id } = useParams();
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(
-          `http://127.0.0.1:8000/api/employees/profile/${id}`,
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-            },
-          }
-        );
-        setEmployee(response.data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error);
-        setIsLoading(false);
-      }
+    // Fetch all employees
+    const fetchAllEmployees = async (id) => {
+      setIsLoading(true);
+      const employeesData = await getEmployeeById(id);
+      setEmployee(employeesData);
+      setIsLoading(false);
     };
-    fetchData();
+
+    fetchAllEmployees();
   }, []);
+
   console.log(employee);
+
   return (
     <div>
       <div className='flex'>
