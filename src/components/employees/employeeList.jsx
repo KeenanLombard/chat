@@ -17,10 +17,8 @@ function EmployeeList() {
       setIsLoading(false);
     };
 
-    fetchAllEmployees(); // Fetch all employees
-  }, []); // Empty dependency array means this effect runs only once, equivalent to componentDidMount
-
-  console.log(employees);
+    fetchAllEmployees();
+  }, []);
 
   let employeesView;
   if (!isLoading) {
