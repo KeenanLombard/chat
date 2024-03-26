@@ -1,5 +1,8 @@
 import React from "react";
+import { useHistory } from "react-router-dom"; // Import useHistory hook
 import { useState } from "react";
+import { logInWithEmailAndPassword } from "../../firebase/firebase";
+import { getAuth } from "firebase/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -7,9 +10,14 @@ function Login() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Add your login logic here
-    console.log("Login clicked");
+    logInWithEmailAndPassword(email, password).then(() => {
+      if (getAuth().currentUser != null) {
+        history.push("/employees"); // Navigate to "/employees" route
+      }
+    });
   };
+
+  const history = useHistory();
 
   return (
     <div className='flex items-center justify-center min-h-screen'>

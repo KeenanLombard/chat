@@ -9,6 +9,8 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
+import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+
 const firebaseConfig = {
   apiKey: "AIzaSyB3FY24O-yxWdm1TdxInD6yt52E7kdU7hA",
   authDomain: "chat-450f4.firebaseapp.com",
@@ -22,14 +24,25 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+export const logInWithEmailAndPassword = async (email, password) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+export const logout = () => {
+  signOut(auth);
+};
 
 export const getEmployeeById = async (id) => {
   const docRef = doc(db, "employees", id);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
     return { id: docSnap.id, data: docSnap.data() };
-  } else {
-    console.log("No such document!");
   }
 };
 
