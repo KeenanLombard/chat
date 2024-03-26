@@ -5,6 +5,8 @@ import {
   getFirestore,
   getDocs,
   collection,
+  setDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -25,10 +27,38 @@ export const getEmployeeById = async (id) => {
   const docRef = doc(db, "employees", id);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
-    return docSnap.data();
+    return { id: docSnap.id, data: docSnap.data() };
   } else {
     console.log("No such document!");
   }
+};
+
+export const addEmployee = async (payload) => {
+  const querySnapshot = await getDocs(collection(db, "employees"));
+  const number = querySnapshot.size + 1;
+  let end;
+  if (number < 10) {
+    end = "00" + number.toString();
+  } else if (number < 100) {
+    end = "0" + number.toString();
+  }
+  let id = payload.fname.substring(0, 1) + payload.lname.substring(0, 1) + end;
+  id = id.toUpperCase();
+  await setDoc(doc(db, "employees", id), {
+    fname: payload.fname,
+    lname: payload.lname,
+    department: payload.department,
+    email: payload.email,
+    position: payload.position,
+    status: false,
+    tasks_completed: 0,
+    performance_rating: 0,
+    hours_worked: 0,
+  });
+};
+
+export const deleteEmployee = async (id) => {
+  await deleteDoc(doc(db, "employees", id));
 };
 
 export const getAllEmployees = async () => {

@@ -44,16 +44,17 @@ function EmployeeList() {
                         <p className='text-neutral-500 text-sm'>
                           {x.data.department}
                         </p>
+                        <p className='text-neutral-500 text-sm'>
+                          {x.data.position}
+                        </p>
                       </div>
                     </div>
                     <p
                       className={`${
-                        x.data.status != "Active"
-                          ? "bg-red-100 border-red-500"
-                          : "bg-green-100 border-green-500"
-                      } ' border-2 rounded-full my-auto px-5 text-center`}>
-                      {x.data.status}
-                    </p>
+                        !x.data.status
+                          ? "bg-red-200 border-red-500"
+                          : "bg-green-200 border-green-500"
+                      } ' border-2 rounded-full h-4 w-4 p-1 text-center m-2`}></p>
                   </div>
                   <div className='flex justify between w-full my-4'>
                     <div className='border-r-2 w-full text-center'>

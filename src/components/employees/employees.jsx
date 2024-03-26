@@ -1,10 +1,22 @@
 import React from "react";
 import { useState } from "react";
 import EmployeeList from "./employeeList";
+import { addEmployee } from "../../firebase/firebase";
 
 function Employees() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    fname: "",
+    lname: "",
+    department: "",
+    email: "",
+    position: "",
+  });
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -13,12 +25,19 @@ function Employees() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    addEmployee(formData);
+    setFormData({
+      fname: "",
+      lname: "",
+      department: "",
+      email: "",
+      position: "",
+    });
     closeModal();
   };
 
   return (
     <div>
-      {/* toolbar */}
       <header className='flex justify-between text-sm'>
         <div>
           <div>
@@ -49,7 +68,6 @@ function Employees() {
             placeholder='search...'></input>
         </div>
       </header>
-      {/* Model */}
       {isModalOpen && (
         <div className='fixed inset-0 flex items-center justify-center z-50'>
           <div className='absolute inset-0 bg-black opacity-50'></div>
@@ -63,38 +81,55 @@ function Employees() {
               </button>
             </div>
 
-            <form onSubmit={() => handleSubmit}>
-              {/* Your form fields go here */}
+            <form onSubmit={handleSubmit}>
               <label className='block mb-4'>
-                ID:
+                First Name:
                 <input
                   type='text'
+                  name='fname'
                   className='border rounded w-full p-2'
-                  // Add your form input state and logic here
+                  value={formData.fname}
+                  onChange={handleInputChange}
                 />
               </label>
               <label className='block mb-4'>
-                Name:
+                Last Name:
                 <input
                   type='text'
+                  name='lname'
                   className='border rounded w-full p-2'
-                  // Add your form input state and logic here
+                  value={formData.lname}
+                  onChange={handleInputChange}
+                />
+              </label>
+              <label className='block mb-4'>
+                Department:
+                <input
+                  type='text'
+                  name='department'
+                  className='border rounded w-full p-2'
+                  value={formData.department}
+                  onChange={handleInputChange}
                 />
               </label>
               <label className='block mb-4'>
                 Email:
                 <input
                   type='text'
+                  name='email'
                   className='border rounded w-full p-2'
-                  // Add your form input state and logic here
+                  value={formData.email}
+                  onChange={handleInputChange}
                 />
               </label>
               <label className='block mb-4'>
-                Group:
+                Position:
                 <input
                   type='text'
+                  name='position'
                   className='border rounded w-full p-2'
-                  // Add your form input state and logic here
+                  value={formData.position}
+                  onChange={handleInputChange}
                 />
               </label>
               <button
